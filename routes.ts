@@ -3,7 +3,7 @@ import { createServer, type Server } from "http";
 import Stripe from "stripe";
 import { storage } from "./storage";
 import { z } from "zod";
-import { currencyCodeSchema, convertPrice, getCurrency } from "@shared/currency";
+import { currencyCodeSchema, convertPrice, getCurrency } from "../shared/currency";
 
 if (!process.env.STRIPE_SECRET_KEY) {
   console.warn('Warning: STRIPE_SECRET_KEY not found in environment variables');
