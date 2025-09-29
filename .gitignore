@@ -1,0 +1,23 @@
+# Dépendances
+node_modules/
+
+# Builds & caches
+dist/
+build/
+.tmp/
+.cache/
+.vite/
+.parcel-cache/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environnements
+.env
+.env.*
+!.env.example
+
+# Replit
+.replit
+replit.nix
