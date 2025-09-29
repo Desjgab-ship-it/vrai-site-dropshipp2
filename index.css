@@ -1,0 +1,233 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Color tokens */
+  --color-bg: hsl(0, 0%, 100%);
+  --color-text: hsl(0, 0%, 14.1%);
+  --color-btn: hsl(51, 100%, 50%);
+  --color-btn-text: hsl(0, 0%, 0%);
+
+  /* Typography */
+  --font-body: "Poppins", sans-serif;
+  --body-size: 15px;
+  --h1-hero-size: 50px;
+  --h1-hero-weight: 700;
+  --header-title-size: 36px;
+  --header-title-weight: 600;
+
+  /* Layout */
+  --container-max: 1240px;
+  --container-x: 30px;
+  --breakpoint: 990px;
+  --grid-gap-x: 32px;
+  --grid-gap-y: 0;
+  --section-py: 8px;
+  --card-media-padding: 1.6rem;
+
+  /* Drawers */
+  --drawer-w: 588px;
+  --cart-drawer-w: 400px;
+  --drawer-backdrop: hsl(0, 0%, 14.1%, 0.5);
+  --drawer-ease: 250ms;
+
+  /* Border radius */
+  --radius-card: 1.8rem;
+  --radius-btn: 12px;
+  --radius-input: 6px;
+  --radius-textbox: 20px;
+  --radius-pill: 40px;
+
+  /* Shadows */
+  --shadow-card: 0 8px 24px hsl(0, 0%, 0%, 0.12);
+  --shadow-btn: 0 4px 10px hsl(0, 0%, 0%, 0.15);
+
+  /* Transitions */
+  --transition-ui: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Shadcn variables */
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(0, 0%, 14.1%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(0, 0%, 14.1%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(0, 0%, 14.1%);
+  --primary: hsl(51, 100%, 50%);
+  --primary-foreground: hsl(0, 0%, 0%);
+  --secondary: hsl(0, 0%, 14.1%);
+  --secondary-foreground: hsl(0, 0%, 100%);
+  --muted: hsl(0, 0%, 96%);
+  --muted-foreground: hsl(0, 0%, 45%);
+  --accent: hsl(0, 0%, 96%);
+  --accent-foreground: hsl(0, 0%, 14.1%);
+  --destructive: hsl(0, 84%, 60%);
+  --destructive-foreground: hsl(0, 0%, 100%);
+  --border: hsl(0, 0%, 90%);
+  --input: hsl(0, 0%, 90%);
+  --ring: hsl(51, 100%, 50%);
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    font-family: var(--font-body);
+    font-size: var(--body-size);
+    color: var(--color-text);
+    background: var(--color-bg);
+    line-height: 1.6;
+    @apply antialiased;
+  }
+
+  .container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--container-x);
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 font-semibold text-base transition-all duration-300 cursor-pointer border-none;
+    background: var(--color-btn);
+    color: var(--color-btn-text);
+    border-radius: var(--radius-btn);
+    box-shadow: var(--shadow-btn);
+  }
+
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px hsl(0, 0%, 0%, 0.2);
+  }
+
+  .btn-buy {
+    @apply btn;
+    background: var(--color-btn);
+    color: var(--color-btn-text);
+  }
+
+  .drawer-overlay {
+    @apply fixed inset-0 opacity-0 invisible transition-all z-[998];
+    background: var(--drawer-backdrop);
+    transition-duration: var(--drawer-ease);
+  }
+
+  .drawer-overlay.active {
+    @apply opacity-100 visible;
+  }
+
+  .drawer {
+    @apply fixed top-0 bottom-0 bg-white overflow-y-auto z-[999] transition-transform;
+    transition-duration: var(--drawer-ease);
+  }
+
+  .drawer.nav-drawer {
+    @apply left-0;
+    width: min(var(--drawer-w), 100%);
+    transform: translateX(-100%);
+  }
+
+  .drawer.cart-drawer {
+    @apply right-0;
+    width: var(--cart-drawer-w);
+    transform: translateX(100%);
+  }
+
+  .drawer.active {
+    transform: translateX(0);
+  }
+
+  .sticky-bottom {
+    @apply fixed bottom-0 left-0 right-0 border-t border-gray-200 z-[900];
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 12px var(--container-x);
+  }
+
+  .hero-section {
+    @apply min-h-[70vh] flex items-center justify-center text-center text-white bg-cover bg-center;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url('https://pixabay.com/get/g6b9916a997fcf1e713334f477ec5503dec3e2e4963dd77935d1cc4c21e85693ac63b2fecdbc4cb72b78b311283735d3784e27774cd9550cc98c5607432f95041_1280.jpg');
+  }
+
+  .trust-badge {
+    @apply bg-white text-center p-6;
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+  }
+
+  .section-dark {
+    @apply bg-gray-800 text-white;
+  }
+
+  .review-card {
+    @apply bg-white;
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+    padding: var(--card-media-padding);
+  }
+
+  .footer-dark {
+    @apply bg-gray-900 text-gray-300;
+  }
+
+  .grid-2-col {
+    @apply grid gap-8 lg:gap-16 items-center;
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 990px) {
+    .grid-2-col {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+}
+
+@layer utilities {
+  .text-hero {
+    font-size: var(--h1-hero-size);
+    font-weight: var(--h1-hero-weight);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .text-header {
+    font-size: var(--header-title-size);
+    font-weight: var(--header-title-weight);
+  }
+
+  .text-shadow {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  }
+}
+
+@media (max-width: 990px) {
+  .desktop-nav {
+    display: none;
+  }
+  
+  .mobile-only {
+    display: block;
+  }
+  
+  .desktop-only {
+    display: none;
+  }
+
+  .drawer.cart-drawer {
+    width: min(var(--cart-drawer-w), 100%);
+  }
+}
+
+@media (min-width: 991px) {
+  .mobile-only {
+    display: none;
+  }
+  
+  .desktop-only {
+    display: block;
+  }
+}
